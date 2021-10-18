@@ -125,13 +125,13 @@
                 <div class="col-3">
                   <label for="state">State</label>
                   <input
-                    class="form-control"
-                    list="state"
+                    list="states"
                     id="state"
-                    name="state"
+                    name="states-names"
                     placeholder="Pick a state"
+                    class="form-control"
                   />
-                  <datalist id="state" name="state">
+                  <datalist id="states" name="states-names">
                     <option value="madrid"> </option>
                     <option value="zaragoza"> </option>
                     <option value="barcelona"> </option>
@@ -152,8 +152,11 @@
 
               <div class="row mt-2">
                 <div class="col-5">
-                  <p>We accept:</p>
-                  <div id="cards">
+                  <label for="cards-text" class="form-label row m-2"
+                    >We accept:</label
+                  >
+
+                  <div id="cards" class="badge bg-secondary">
                     <input
                       class="m-1"
                       type="radio"
@@ -193,10 +196,11 @@
                   </div>
                 </div>
                 <div class="col-7">
-                  <p>Message</p>
-                  <textarea name="message"></textarea>
-                  <br />
-                  <span id="info">Add any notes here.</span>
+                  <label for="Textarea" class="form-label">Message</label>
+                  <textarea name="message" class="form-control"></textarea>
+                  <p id="info" class="fw-light">
+                    Add any notes here.
+                  </p>
                 </div>
               </div>
 

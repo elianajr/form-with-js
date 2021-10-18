@@ -5,6 +5,7 @@ let firstName = document.querySelector("#fname");
 let lastName = document.querySelector("#lname");
 let city = document.querySelector("#city");
 let state = document.querySelector("#state");
+let option = document.querySelectorAll("option");
 let cards = document.querySelector("#cards");
 let alert1 = document.querySelector("#alert1");
 let alert2 = document.querySelector("#alert2");
@@ -14,7 +15,7 @@ let myPostalCode = document.querySelector("#code");
 let counter = 0;
 
 window.onload = function() {
-  submit.addEventListener("click", () => {
+  submit.addEventListener("click", event => {
     if (counter == 9) {
       isSuccess();
     } else {
@@ -44,7 +45,11 @@ city.addEventListener("focusout", () => {
 });
 
 state.addEventListener("focusout", () => {
-  isText(state.value) ? isValid(state) : isInValid(state);
+  if (state.value == option.value) {
+    isValid(state);
+  } else {
+    isInValid(state);
+  }
 });
 
 cvc.addEventListener("focusout", () => {
