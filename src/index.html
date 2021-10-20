@@ -151,18 +151,23 @@
               </div>
 
               <div class="row mt-2">
-                <div class="col-5">
+                <div class="col-5 ">
                   <label for="cards-text" class="form-label row m-2"
                     >We accept:</label
                   >
 
-                  <div id="cards" class="badge bg-secondary">
+                  <div
+                    id="cards"
+                    class="bg-secondary p-2 rounded w-20"
+                    style="--bs-bg-opacity: .5;"
+                  >
                     <input
                       class="m-1"
                       type="radio"
                       id="mastercard"
                       name="bankcard"
                       value="mastercard"
+                      checked
                     />
                     <label for="mastercard"
                       ><i class="fab fa-cc-mastercard"></i
@@ -195,6 +200,7 @@
                     <label for="amex"><i class="fab fa-cc-amex"></i></label>
                   </div>
                 </div>
+
                 <div class="col-7">
                   <label for="Textarea" class="form-label">Message</label>
                   <textarea name="message" class="form-control"></textarea>

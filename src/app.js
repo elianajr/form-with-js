@@ -1,101 +1,110 @@
-let cardNumber = document.querySelector("#cardNumber");
-let cvc = document.querySelector("#cvc");
-let amount = document.querySelector("#amount");
-let firstName = document.querySelector("#fname");
-let lastName = document.querySelector("#lname");
-let city = document.querySelector("#city");
-let state = document.querySelector("#state");
-let option = document.querySelectorAll("option");
-let cards = document.querySelector("#cards");
-let alert1 = document.querySelector("#alert1");
-let alert2 = document.querySelector("#alert2");
-let submit = document.querySelector("#send");
-let myPostalCode = document.querySelector("#code");
+const CARD_NUMBER = document.querySelector("#cardNumber");
+const CVC = document.querySelector("#cvc");
+const AMOUNT = document.querySelector("#amount");
+const FIRST_NAME = document.querySelector("#fname");
+const LAST_NAME = document.querySelector("#lname");
+const CITY = document.querySelector("#city");
+const STATE = document.querySelector("#state");
+const OPTION = document.querySelectorAll("option");
+const POSTAL_CODE = document.querySelector("#code");
+
+const WRONG = document.querySelector("#alert1");
+const SUCCESS = document.querySelector("#alert2");
+
+const SUBMIT = document.querySelector("#send");
 
 let counter = 0;
 
-window.onload = function() {
-  submit.addEventListener("click", event => {
-    if (counter == 9) {
-      isSuccess();
-    } else {
-      isFail();
-    }
-  });
-};
+window.onload = function() {};
 
-function isSuccess() {
-  alert2.style.display = "inline";
-}
-
-function isFail() {
-  alert1.style.display = "inline";
-}
-
-firstName.addEventListener("focusout", () => {
-  isText(firstName.value) ? isValid(firstName) : isInValid(firstName);
-});
-
-lastName.addEventListener("focusout", () => {
-  isText(lastName.value) ? isValid(lastName) : isInValid(lastName);
-});
-
-city.addEventListener("focusout", () => {
-  isText(city.value) ? isValid(city) : isInValid(city);
-});
-
-state.addEventListener("focusout", () => {
-  if (state.value == option.value) {
-    isValid(state);
-  } else {
-    isInValid(state);
-  }
-});
-
-cvc.addEventListener("focusout", () => {
-  if (cvc.value.length == 3 || cvc.value.length == 4) {
-    isValid(cvc);
-  } else {
-    isInValid(cvc);
-  }
-});
-
-amount.addEventListener("focusout", () => {
-  if (amount.value <= 20000) {
-    isValid(amount);
-  } else {
-    isInValid(amount);
-  }
-});
-
-myPostalCode.addEventListener("focusout", () => {
-  if (myPostalCode.value.length == 5) {
-    isValid(myPostalCode);
-  } else {
-    isInValid(myPostalCode);
-  }
-});
-
-cardNumber.addEventListener("focusout", () => {
+SUBMIT.addEventListener("click", event => {
+  event.preventDefault();
   if (
-    cardNumber.value.length >= 16 &&
-    cardNumber.value.length <= 19 &&
-    valid_credit_card(cardNumber.value)
+    FIRST_NAME.classList.contains("is-Valid") &&
+    LAST_NAME.classList.contains("is-Valid") &&
+    CARD_NUMBER.classList.contains("is-Valid") &&
+    CVC.classList.contains("is-Valid") &&
+    AMOUNT.classList.contains("is-Valid") &&
+    CITY.classList.contains("is-Valid") &&
+    STATE.classList.contains("is-Valid") &&
+    POSTAL_CODE.classList.contains("is-Valid")
   ) {
-    isValid(cardNumber);
+    SUCCESS.classList.remove("d-none");
   } else {
-    isInValid(cardNumber);
+    WRONG.classList.remove("d-none");
+  }
+});
+
+FIRST_NAME.addEventListener("focusout", () => {
+  isText(FIRST_NAME.value) ? isValid(FIRST_NAME) : isInValid(FIRST_NAME);
+});
+
+LAST_NAME.addEventListener("focusout", () => {
+  isText(LAST_NAME.value) ? isValid(LAST_NAME) : isInValid(LAST_NAME);
+});
+
+CITY.addEventListener("focusout", () => {
+  if (isText(CITY.value) && CITY.value.length >= 1) {
+    isValid(CITY);
+  } else {
+    isInValid(CITY);
+  }
+});
+
+let cityValues = [];
+for (const cities in OPTION) {
+  cityValues.push(OPTION[cities].value);
+  console.log(cityValues);
+}
+
+STATE.addEventListener("focusout", () => {
+  cityValues.some(city => city == STATE.value)
+    ? isValid(STATE)
+    : isInValid(STATE);
+});
+
+CVC.addEventListener("focusout", () => {
+  if (CVC.value.length == 3 || CVC.value.length == 4) {
+    isValid(CVC);
+  } else {
+    isInValid(CVC);
+  }
+});
+
+AMOUNT.addEventListener("focusout", () => {
+  if (AMOUNT.value <= 2000) {
+    isValid(AMOUNT);
+  } else {
+    isInValid(AMOUNT);
+  }
+});
+
+POSTAL_CODE.addEventListener("focusout", () => {
+  if (POSTAL_CODE.value.length == 5) {
+    isValid(POSTAL_CODE);
+  } else {
+    isInValid(POSTAL_CODE);
+  }
+});
+
+CARD_NUMBER.addEventListener("focusout", () => {
+  if (
+    CARD_NUMBER.value.length >= 16 &&
+    CARD_NUMBER.value.length <= 19 &&
+    valid_credit_card(CARD_NUMBER.value)
+  ) {
+    isValid(CARD_NUMBER);
+  } else {
+    isInValid(CARD_NUMBER);
   }
 });
 
 const isValid = input => {
-  counter += 1;
   input.classList.remove("is-invalid");
   input.classList.add("is-valid");
 };
 
 const isInValid = input => {
-  counter -= 1;
   input.classList.remove("is-valid");
   input.classList.add("is-invalid");
 };
@@ -108,17 +117,17 @@ const isNumber = number => {
   return /^[0-9]/.test(number);
 };
 
-function valid_credit_card(cardNumber) {
+function valid_credit_card(CARD_NUMBER) {
   // Accept only digits, dashes or spaces
-  if (/[^0-9-\s]+/.test(cardNumber)) return false;
+  if (/[^0-9-\s]+/.test(CARD_NUMBER)) return false;
 
   // The Luhn Algorithm. It's so pretty.
   let nCheck = 0,
     bEven = false;
-  cardNumber = cardNumber.replace(/\D/g, "");
+  CARD_NUMBER = CARD_NUMBER.replace(/\D/g, "");
 
-  for (var n = cardNumber.length - 1; n >= 0; n--) {
-    var cDigit = cardNumber.charAt(n),
+  for (var n = CARD_NUMBER.length - 1; n >= 0; n--) {
+    var cDigit = CARD_NUMBER.charAt(n),
       nDigit = parseInt(cDigit, 10);
 
     if (bEven && (nDigit *= 2) > 9) nDigit -= 9;
