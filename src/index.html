@@ -28,7 +28,7 @@
           <div
             class="alert alert-danger alert-dismissible fade show d-none"
             role="alert"
-            id="alert1"
+            id="wrongalert"
           >
             Some fields are missing
           </div>
@@ -36,7 +36,7 @@
           <div
             class="alert alert-success alert-dismissible fade show d-none"
             role="alert"
-            id="alert2"
+            id="successalert"
           >
             Successfull sent!
           </div>
@@ -132,10 +132,10 @@
                     class="form-control"
                   />
                   <datalist id="states" name="states-names">
-                    <option value="madrid"> </option>
-                    <option value="zaragoza"> </option>
-                    <option value="barcelona"> </option>
-                    <option value="ibiza"> </option>
+                    <option value="Madrid"> </option>
+                    <option value="Aragon"> </option>
+                    <option value="Cataluña"> </option>
+                    <option value="Baleares"> </option>
                   </datalist>
                 </div>
                 <div class="col-4">
@@ -145,6 +145,9 @@
                     type="text"
                     id="code"
                     name="code"
+                    size="5"
+                    minlength="5"
+                    maxlength="5"
                     required
                   />
                 </div>

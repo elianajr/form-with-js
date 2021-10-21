@@ -8,8 +8,8 @@ const STATE = document.querySelector("#state");
 const OPTION = document.querySelectorAll("option");
 const POSTAL_CODE = document.querySelector("#code");
 
-const WRONG = document.querySelector("#alert1");
-const SUCCESS = document.querySelector("#alert2");
+const WRONG = document.querySelector("#wrongalert");
+const SUCCESS = document.querySelector("#successalert");
 
 const SUBMIT = document.querySelector("#send");
 
@@ -20,18 +20,20 @@ window.onload = function() {};
 SUBMIT.addEventListener("click", event => {
   event.preventDefault();
   if (
-    FIRST_NAME.classList.contains("is-Valid") &&
-    LAST_NAME.classList.contains("is-Valid") &&
-    CARD_NUMBER.classList.contains("is-Valid") &&
-    CVC.classList.contains("is-Valid") &&
-    AMOUNT.classList.contains("is-Valid") &&
-    CITY.classList.contains("is-Valid") &&
-    STATE.classList.contains("is-Valid") &&
-    POSTAL_CODE.classList.contains("is-Valid")
+    FIRST_NAME.classList.contains("is-valid") &&
+    LAST_NAME.classList.contains("is-valid") &&
+    CARD_NUMBER.classList.contains("is-valid") &&
+    CVC.classList.contains("is-valid") &&
+    AMOUNT.classList.contains("is-valid") &&
+    CITY.classList.contains("is-valid") &&
+    STATE.classList.contains("is-valid") &&
+    POSTAL_CODE.classList.contains("is-valid")
   ) {
     SUCCESS.classList.remove("d-none");
+    SUCCESS.classList.add("d-block");
   } else {
     WRONG.classList.remove("d-none");
+    WRONG.classList.add("d-block");
   }
 });
 
