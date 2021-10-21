@@ -31,9 +31,13 @@ SUBMIT.addEventListener("click", event => {
   ) {
     SUCCESS.classList.remove("d-none");
     SUCCESS.classList.add("d-block");
+    WRONG.classList.remove("d-block");
+    WRONG.classList.add("d-none");
   } else {
     WRONG.classList.remove("d-none");
     WRONG.classList.add("d-block");
+    SUCCESS.classList.remove("d-block");
+    SUCCESS.classList.add("d-none");
   }
 });
 
